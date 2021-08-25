@@ -19,15 +19,14 @@ launch_runs impl_1 -to_step write_bitstream -jobs 4
 wait_on_run impl_1
 
 open_run impl_1
-write_checkpoint     -force ./results/post_route.dcp
+#write_checkpoint     -force ./results/post_route.dcp
 write_debug_probes   -force ./results/probes.ltx
 write_hwdef -force  -file   ./results/top.hdf
 write_hw_platform -fixed -force -file ./results/top.xsa
-report_timing_summary -file ./results/post_route_timing_summary.rpt
-report_utilization    -file ./results/post_route_utilization.rpt
+report_timing_summary -file ./results/timing.rpt
+report_utilization    -file ./results/utilization.rpt
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [get_designs impl_1]
-#write_bitstream      -force ./results/top.bit
 write_bitstream -bin_file -force ./results/top.bit
 
 close_project
